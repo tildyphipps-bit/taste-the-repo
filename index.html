@@ -1,114 +1,233 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <title>tild's taste buds</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=fira+code:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
+    * { box-sizing: border-box; }
+
     body {
-  font-family: "Fira Code", "SF Mono", "Consolas", monospace;
-  background-color: #1e1e1e; /* VS Code dark theme */
-  color: #d4d4d4;
-  padding: 40px;
-  max-width: 700px;
-  margin: auto;
-  line-height: 1.6;
-}
+      margin: 0;
+      font-family: "fira code", monospace;
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      display: flex;
+      min-height: 100vh;
+    }
 
-/* Code-style headings */
-h1, h2 {
-  font-weight: 600;
-  color: #569cd6; /* blue like code keywords */
-}
+    /* sidebar */
+    .sidebar {
+      width: 240px;
+      background-color: #252526;
+      padding: 16px;
+      border-right: 1px solid #3c3c3c;
+    }
 
-/* Code block container */
-.section {
-  background-color: #252526;
-  padding: 20px;
-  border-radius: 6px;
-  margin-top: 30px;
-  border-left: 4px solid #3c3c3c;
-}
+    .project-title {
+      color: #569cd6;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
 
-/* Code-style links */
-.link-list a {
-  display: block;
-  color: #ce9178; /* string literal colour */
-  text-decoration: none;
-  margin: 6px 0;
-  font-size: 17px;
-}
+    .tree {
+      font-size: 14px;
+      line-height: 1.6;
+    }
 
-.link-list a:hover {
-  color: #dcdcaa; /* yellow highlight */
-  text-decoration: underline;
-}
+    .folder {
+      color: #dcdcaa;
+      margin-top: 8px;
+    }
 
-/* Logo styling */
-.logo {
-  width: 120px;
-  height: auto;
-  margin-bottom: 20px;
-  border-radius: 4px;
-}
+    .file {
+      color: #9cdcfe;
+      margin-left: 16px;
+      cursor: pointer;
+    }
+
+    .file:hover {
+      color: #ce9178;
+    }
+
+    /* main content */
+    .main {
+      flex: 1;
+      padding: 24px 32px;
+    }
+
+    .logo {
+      width: 100px;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px 0;
+      color: #569cd6;
+      font-size: 24px;
+      text-transform: lowercase;
+    }
+
+    .typing {
+      font-size: 14px;
+      color: #dcdcaa;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #dcdcaa;
+      width: 0;
+      animation: typing 3s steps(40, end) forwards, blink 0.8s infinite;
+      margin-bottom: 24px;
+      text-transform: lowercase;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 320px; }
+    }
+
+    @keyframes blink {
+      0% { border-color: #dcdcaa; }
+      50% { border-color: transparent; }
+      100% { border-color: #dcdcaa; }
+    }
+
+    .section {
+      background-color: #252526;
+      padding: 16px 20px;
+      border-radius: 6px;
+      margin-top: 24px;
+      border-left: 4px solid #3c3c3c;
+    }
+
+    .section h2 {
+      margin: 0 0 8px 0;
+      color: #569cd6;
+      font-size: 18px;
+      text-transform: lowercase;
+    }
+
+    .link-list a {
+      display: block;
+      color: #ce9178;
+      text-decoration: none;
+      margin: 4px 0;
+      font-size: 15px;
+      text-transform: lowercase;
+    }
+
+    .link-list a:hover {
+      color: #dcdcaa;
+      text-decoration: underline;
+    }
+
+    /* terminal */
+    .terminal {
+      background-color: #000;
+      color: #00ff7f;
+      font-size: 13px;
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-top: 32px;
+      font-family: "fira code", monospace;
+      text-transform: lowercase;
+    }
+
+    .terminal-line { margin: 2px 0; }
+
+    .prompt { color: #00b894; }
+
+    @media (max-width: 800px) {
+      body { flex-direction: column; }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #3c3c3c;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- FILE TREE SIDEBAR -->
+  <!-- sidebar -->
   <div class="sidebar">
-    <h3>tilds-taste-buds/</h3>
+    <div class="project-title">tilds-taste-buds/</div>
+    <div class="tree">
+      <div class="folder">src/</div>
+      <div class="file" data-target="music">music.js</div>
+      <div class="file" data-target="writing">writing.js</div>
+      <div class="file" data-target="recipes">recipes.js</div>
+      <div class="file" data-target="socials">socials.js</div>
 
-    <div class="file">music.js</div>
-    <div class="file">writing.js</div>
-    <div class="file">recipes.js</div>
-    <div class="file">socials.js</div>
-    <div class="file">logo.png</div>
+      <div class="folder">assets/</div>
+      <div class="file" data-target="logo">logo.png</div>
+    </div>
   </div>
 
-  <!-- MAIN CONTENT -->
+  <!-- main -->
   <div class="main">
 
-    <img class="logo" src="https://scontent-lhr11-1.cdninstagram.com/v/t51.82787-19/652015866_18097682633074512_371219048116034557_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lhr11-1.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gEe_giYOlKM90e7MzYYyeOJHi2DGYGTebcmemjp25GsHRuwhMvUJWBSX3MN9RjvloU&_nc_ohc=V0278XTKwMMQ7kNvwGJBgxl&_nc_gid=oPgIUpjttGXn_ZKqaATASQ&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AQHKqzgmSkhSQqmHwyodRu0JHlSk33nm8K-SJzFwg54Oaw&oe=6A72700D&_nc_sid=7a9f4b" alt="Logo">
+    <img class="logo" src="logo.png" alt="logo">
 
     <h1>// tild</h1>
+    <div class="typing">const tild = new tastebud("music", "writing", "recipes")</div>
 
-    <div class="section">
-      <h2>// Music</h2>
+    <div class="section" id="music">
+      <h2>// music</h2>
       <div class="link-list">
-        <a href="https://open.spotify.com/user/l5896nqhho0qgoftgf8i2x8an?si=1c4687f15fde44e2">"Spotify"</a>
+        <a href="https://open.spotify.com/user/l5896nqhho0qgoftgf8i2x8an?si=1c4687f15fde44e2">"spotify"</a>
       </div>
     </div>
 
-    <div class="section">
-      <h2>// Writing</h2>
+    <div class="section" id="writing">
+      <h2>// writing</h2>
       <div class="link-list">
-        <a href="https://substack.com/@tildstastebuds">"Substack"</a>
+        <a href="https://substack.com/@tildstastebuds">"substack"</a>
       </div>
     </div>
 
-    <div class="section">
-      <h2>// Recipes</h2>
+    <div class="section" id="recipes">
+      <h2>// recipes</h2>
       <div class="link-list">
-        <a href="#">"Recipe 1"</a>
-        <a href="#">"Recipe 2"</a>
+        <a href="#">"recipe 1"</a>
+        <a href="#">"recipe 2"</a>
       </div>
     </div>
 
-    <div class="section">
-      <h2>// Socials</h2>
+    <div class="section" id="socials">
+      <h2>// socials</h2>
       <div class="link-list">
-        <a href="https://instagram.com/matilda_phipps">"Instagram"</a>
+        <a href="https://instagram.com/matilda_phipps">"instagram"</a>
       </div>
+    </div>
+
+    <div class="terminal">
+      <div class="terminal-line"><span class="prompt">tild@taste-buds</span>:~$ ls src</div>
+      <div class="terminal-line">music.js writing.js recipes.js socials.js</div>
+      <div class="terminal-line"><span class="prompt">tild@taste-buds</span>:~$ echo "hungry for more"</div>
+      <div class="terminal-line">hungry for more</div>
     </div>
 
   </div>
 
+  <script>
+    const files = document.querySelectorAll('.file');
+
+    files.forEach(file => {
+      file.addEventListener('click', () => {
+        const targetId = file.getAttribute('data-target');
+        const section = document.getElementById(targetId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
 </body>
-
 </html>
-
